@@ -1,0 +1,470 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+
+/**
+ * Main CSS Content Starts From Here
+ */
+
+body {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    color: #1f1f1f;
+    background: #f3f3f3;
+}
+
+.wrapper {
+    max-width: 1000px;
+    width: 100%;
+    margin: 20px auto;
+    min-height: 1000px;
+}
+
+.block-top {
+    height: 15px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    background: #173842;
+}
+
+.block-noPad {
+    margin: auto;
+    min-width: 10px;
+    min-height: 10px;
+    background: #fff;
+}
+
+.block {
+    padding: 10px 20px;
+    min-height: 10px;
+    min-width: 10px;
+    margin: auto;
+}
+
+.header {
+    min-height: 100px;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.logo-text {
+    font-family: monospace, serif, sans-serif;
+    font-size: 40px;
+    margin-top: 45px;
+    float: left;
+}
+
+.logo-img {
+    height: 5%;
+    width: 5%;
+    padding: 40px 20px 40px 44px;
+    float: left;
+}
+
+.container {
+    background: #FFF;
+    padding: 20px 40px;
+    min-height: 10px;
+}
+
+.notice {
+    background: #ffdede;
+    color: #9e4d4d;
+    padding: 10px;
+    font-size: 14px;
+    text-align: center;
+}
+
+a {
+    color: #1c74b1;
+}
+
+.row-form {
+    padding: 5px 0;
+}
+
+.login-form {
+    margin: auto;
+    width: 100%;
+    max-width: 320px;
+    padding: 20px 20px 40px;
+    min-height: 450px;
+}
+
+.regular-form {
+    margin: auto;
+    width: 100%;
+    max-width: 800px;
+    padding: 20px 20px 40px;
+    min-height: 450px;
+}
+
+input[type=text],
+select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 15px;
+}
+
+input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 15px;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: #366877;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+select {
+    -moz-appearance: none;
+    /* Firefox */
+    -webkit-appearance: none;
+    /* Safari and Chrome */
+    appearance: none;
+}
+
+select:invalid {
+    color: gray;
+}
+
+.setupDay {
+    width: 200px;
+    float: left;
+}
+
+.setupTime {
+    width: 65px;
+    margin-left: 20px;
+    float: left;
+}
+
+.title-form {
+    text-align: center;
+    font-size: 25px;
+}
+
+.desc-form {
+    text-align: center;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    letter-spacing: 3px;
+    padding: 20px 0;
+}
+
+.sub-form {
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.footer {
+    min-height: 100px;
+    background: #173842;
+    padding: 25px 30px 10px;
+}
+
+.footer-bot {
+    background: #173842;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    height: 15px;
+}
+
+.clr {
+    clear: both;
+}
+
+.info-col-left {
+    color: #92aeb7;
+    font-size: 12px;
+    line-height: 25px;
+    letter-spacing: 1px;
+    float: left;
+}
+
+.info-col-right {
+    text-transform: uppercase;
+    color: #92aeb7;
+    font-size: 12px;
+    line-height: 25px;
+    letter-spacing: 1px;
+    text-align: right;
+    float: right;
+}
+
+.data-row {
+    border-bottom: 1px dashed #d7dee4;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.data-left {
+    float: left;
+    font-size: 14px;
+    min-width: 220px;
+    border-right: 1px solid lightgray;
+}
+
+.data-right {
+    float: left;
+    margin-left: 20px;
+}
+
+.slot {
+    float: left;
+    margin-left: 3px;
+    width: 5px;
+    height: 15px;
+    background: #0fc30f;
+    border-radius: 3px;
+}
+
+.hidden {
+    display: none;
+}
+
+.sc_delete {
+    width: 17px;
+    height: 17px;
+    float: left;
+    margin-right: 10px;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    text-align: center;
+    margin-top: -3px;
+    padding: 1px;
+    border-radius: 3px;
+    padding-top: 3px;
+    font-weight: bold;
+}
+
+.sc_add {
+    float: left;
+    width: 65px !important;
+    margin-left: 20px !important;
+    background: #2eada8 !important;
+    border: 4px solid #0c7d79 !important;
+    padding: 10px 20px !important;
+    text-align: center;
+    font-weight: bolder;
+}
+
+.professor {
+    color: #a55050;
+    border-bottom: 1px solid #c7b2b2;
+    width: 300px;
+    background-color: white;
+    border-top: 1px solid #c7b2b2;
+    margin: 20px auto;
+}
+
+.navBar {
+    width: 100%;
+    background: #739291;
+    color: white;
+    padding: 20px 0;
+}
+
+.navElement {
+    display: inline-block;
+    margin-left: 30px;
+    font-size: 15px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #c9eceb;
+}
+
+.firstElementSpecialMargin {
+    margin-left: 50px;
+}
+
+.noteBox {
+    float: left;
+    margin-left: 20px !important;
+    width: 575px !important;
+}
+
+.classBox {
+    float: left;
+    width: 200px !important;
+}
+
+.ui-widget {
+    font-size: 15px !important;
+    background: rgba(233, 233, 233, 1) !important;
+    ;
+    border-left: 1px solid #202020 !important;
+    border-right: 1px solid #202020 !important;
+    ;
+    border-bottom: 1px solid #202020 !important;
+    ;
+    color: #202020 !important;
+    max-height: 200px;
+    overflow: scroll;
+}
+
+.classNameBox {
+    font-size: 17px;
+    font-weight: bold;
+    padding: 10px 0;
+}
+
+.fas {
+    padding-right: 5px;
+}
+
+h1 {
+    font-size: 2em !important;
+}

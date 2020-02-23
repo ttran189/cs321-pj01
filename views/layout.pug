@@ -1,11 +1,19 @@
 doctype html
+
 html
-  head
-    title= title
-    link(rel='stylesheet' href='/stylesheets/style.css')
-  body
-    block content
-    ul
-      li line 1
-      li line 2
-      li line 3
+	head
+		meta(charset='utf-8')
+		title= title
+		link(rel='stylesheet' href='/stylesheets/main.css')
+	body
+		.wrapper
+			.block-top
+			.block-noPad
+				.header
+					img(src="/images/calendar.png" alt="logo" class="logo-img")
+					.logo-text Office Hour Scheduler
+					.clr
+			include nav.pug
+			block content
+			include footer.pug
+script(src="https://kit.fontawesome.com/811a9e948b.js" crossorigin="anonymous")

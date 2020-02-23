@@ -1,0 +1,23 @@
+extend layout
+
+block content
+    .block-noPad
+        .container
+            .login-form
+                .row-form
+                    .title-form
+                        | LOGIN
+                .row-form
+                    .desc-form
+                        | Login to access scheduling system
+                .row-form
+                    input(type="text", name="email", placeholder="GMU Email")
+                .row-form
+                    input(type="password", name="password", placeholder="Password")
+                .row-form
+                    input(type="submit", value="Login")
+                .row-form
+                    .sub-form
+                        | Don't have an account yet?
+                        a(href="/register")
+                            |  Sign Up here
