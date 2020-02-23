@@ -6,4 +6,12 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
+router.get('/login', function(req, res, next) {
+  res.send('Login');
+});
+
+router.get('/register', function(req, res, next) {
+  res.send('Register');
+});
+
 module.exports = router;
