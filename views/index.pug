@@ -1,5 +1,7 @@
 extends layout
 
-block content
+block contentrouter.get('/login', function(req, res, next) {
+  res.send('respond with a resource');
+});
   h1= title
   p Welcome to #{title}
