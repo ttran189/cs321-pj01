@@ -1,23 +1,25 @@
 extend layout
 
 block content
-     .block-noPad
-        .container
-            .login-form
-                .row-form
-                    .title-form
-                        | REGISTER
-                .row-form
-                    .desc-form
-                        | Welcome to our scheduling system
-                .row-form
-                    input(type="text", name="email", placeholder="GMU Email")
-                .row-form
-                    input(type="password", name="password", placeholder="Password")
-                .row-form
-                    input(type="submit", value="Sign Up")
-                .row-form
-                    .sub-form
-                        | Already have an account?
-                        a(href="/login")
-                            |  Login here
+	.block-noPad
+		.container
+			.login-form
+				.row-form
+					.title-form
+						| REGISTER
+				.row-form
+					.desc-form
+						| Welcome to our scheduling system
+				.row-form
+					input(type="text" name="name" placeholder="Name")
+				.row-form
+					input(type="text" name="email" placeholder="GMU Email")
+				.row-form
+					input(type="password" name="password" placeholder="Password")
+				.row-form
+					input(type="submit" value="Sign Up")
+				.row-form
+					.sub-form
+						| Already have an account?
+						a(href="/login")
+							|  Login here
