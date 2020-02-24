@@ -11,7 +11,7 @@ const {
 // 	});
 // });
 router.get('/', function (req, res, next) {
-	res.redirect('/login');
+	res.redirect('/user/login');
 });
 
 /* GET dashboard page. */
