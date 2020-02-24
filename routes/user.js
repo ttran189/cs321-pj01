@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var bcrypt = require('bcryptjs');
 var passport = require('passport');
+var emailValidator = require('email-validator');
 
 /* User model */
 const User = require('../models/User');
@@ -13,9 +14,13 @@ router.get('/', function (req, res, next) {
 
 /* GET login page. */
 router.get('/login', function (req, res, next) {
-	res.render('login', {
-		title: 'Login'
-	});
+	if (req.user)
+		res.redirect('/dashboard');
+	else {
+		res.render('login', {
+			title: 'Login'
+		});
+	}
 });
 
 /* GET register page. */
@@ -40,6 +45,13 @@ router.post('/register', (req, res) => {
 	if (!name || !email || !password1 || !password2) {
 		errors.push({
 			msg: "All fields are required."
+		});
+	}
+
+	// Email Validation
+	if (!emailValidator.validate(email)) {
+		errors.push({
+			msg: "Email is not valid."
 		});
 	}
 

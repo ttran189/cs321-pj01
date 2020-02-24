@@ -1,5 +1,9 @@
 extend layout
 
 block content
-    | Welcome
-    a(href="/user/logout")  Logout
+    .block-noPad
+        .container
+            h1 Welcome,
+                =name
+            hr
+            a.logoutBtn(href="/user/logout") Log Out

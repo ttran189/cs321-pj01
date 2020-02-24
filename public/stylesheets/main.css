@@ -197,7 +197,7 @@ body {
 .container {
     background: #FFF;
     padding: 20px 40px;
-    min-height: 10px;
+    min-height: 500px;
 }
 
 .notice {
@@ -483,4 +483,17 @@ h1 {
     margin-bottom: 5px;
     border: 1px solid #00633d;
     color: #00633d;
+}
+
+.logoutBtn {
+    display: block;
+    padding: 12px 6px;
+    color: white;
+    background: #868686;
+    width: 70px;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+    border: 5px solid #adadad;
 }
