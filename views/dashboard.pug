@@ -1,6 +1,5 @@
 extend layout
 
 block content
-    -const user = {"id":"1", "username":"admin", "password":"123456"}
     | Welcome
-    = user.id + user.username
+    a(href="/user/logout")  Logout
