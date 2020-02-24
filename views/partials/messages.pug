@@ -1,0 +1,10 @@
+if errors !== undefined
+	each item in errors
+		.msgError Error: 
+			= item.msg
+
+if success_msg !== undefined && success_msg != ""
+		.msgSuccess= success_msg
+
+if error_msg !== undefined && error_msg != ""
+		.msgError= error_msg

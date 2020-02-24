@@ -468,3 +468,19 @@ select:invalid {
 h1 {
     font-size: 2em !important;
 }
+
+.msgError {
+    background: #f3f3c3;
+    padding: 5px;
+    margin-bottom: 5px;
+    border: 1px solid #a75e1f;
+    color: #a75e1f;
+}
+
+.msgSuccess {
+    background: #cdf5da;
+    padding: 5px;
+    margin-bottom: 5px;
+    border: 1px solid #00633d;
+    color: #00633d;
+}

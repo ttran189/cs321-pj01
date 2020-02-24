@@ -1,23 +1,28 @@
 extend layout
 
 block content
-    .block-noPad
-        .container
-            .login-form
-                .row-form
-                    .title-form
-                        | LOGIN
-                .row-form
-                    .desc-form
-                        | Login to access scheduling system
-                .row-form
-                    input(type="text", name="email", placeholder="GMU Email")
-                .row-form
-                    input(type="password", name="password", placeholder="Password")
-                .row-form
-                    input(type="submit", value="Login")
-                .row-form
-                    .sub-form
-                        | Don't have an account yet?
-                        a(href="/register")
-                            |  Sign Up here
+	.block-noPad
+		.container
+			form(method="POST" action="/user/register")
+				.login-form
+					.row-form
+						.title-form
+							| LOGIN
+					.row-form
+						.desc-form
+							| Login to access scheduling system
+					.row-form
+						include partials/messages.pug
+					.row-form
+						- let prevEmail = email !== undefined? email : ""
+						input#email.form-control(type="text" name="email" placeholder="GMU Email" value=prevEmail)
+					.row-form
+						- let prevPassword = password !== undefined? password : ""
+						input#password.form-control(type="password" name="password" placeholder="Password" value=prevPassword)
+					.row-form
+						input(type="submit" value="Login")
+					.row-form
+						.sub-form
+							| Don't have an account yet?
+							a(href="/user/register")
+								|  Sign Up here

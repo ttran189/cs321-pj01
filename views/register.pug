@@ -3,23 +3,32 @@ extend layout
 block content
 	.block-noPad
 		.container
-			.login-form
-				.row-form
-					.title-form
-						| REGISTER
-				.row-form
-					.desc-form
-						| Welcome to our scheduling system
-				.row-form
-					input(type="text" name="name" placeholder="Name")
-				.row-form
-					input(type="text" name="email" placeholder="GMU Email")
-				.row-form
-					input(type="password" name="password" placeholder="Password")
-				.row-form
-					input(type="submit" value="Sign Up")
-				.row-form
-					.sub-form
-						| Already have an account?
-						a(href="/login")
-							|  Login here
+			form(method="POST" action="/user/register")
+				.login-form
+					.row-form
+						.title-form
+							| REGISTER
+					.row-form
+						.desc-form
+							| Welcome to our scheduling system
+					.row-form
+						include partials/messages.pug
+					.row-form
+						- let prevName = name !== undefined? name : ""
+						input#name.form-control(type="text" name="name" placeholder="Name" value=prevName)
+					.row-form
+						- let prevEmail = email !== undefined? email : ""
+						input#email.form-control(type="text" name="email" placeholder="GMU Email" value=prevEmail)
+					.row-form
+						- let prevPass1 = password1 !== undefined? password1 : ""
+						input#password1.form-control(type="password" name="password1" placeholder="Password" value=prevPass1)
+					.row-form
+						- let prevPass2 = password2 !== undefined? password2 : ""
+						input#password2.form-control(type="password" name="password2" placeholder="Confirm Password" value=prevPass2)
+					.row-form
+						input(type="submit" value="Sign Up")
+					.row-form
+						.sub-form
+							| Already have an account?
+							a(href="/user/login")
+								|  Login here
