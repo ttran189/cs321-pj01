@@ -11,6 +11,7 @@ const passport = require('passport');
 
 const indexRouter = require('./routes/index');
 const userRouter = require('./routes/user');
+const manageRouter = require('./routes/manage');
 
 const app = express();
 
@@ -67,6 +68,7 @@ app.use((req, res, next) => {
 // Routing
 app.use('/', indexRouter);
 app.use('/user', userRouter);
+app.use('/manage', manageRouter);
 
 // Catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -84,9 +86,9 @@ app.use(function (err, req, res, next) {
 	res.render('error');
 });
 
-app.set('port', process.env.PORT || 3000);
-var server = app.listen(app.get('port'), function() {
-  console.log('Express server listening on port ' + server.address().port);
-});
+// app.set('port', process.env.PORT || 3000);
+// var server = app.listen(app.get('port'), function() {
+//   console.log('Express server listening on port ' + server.address().port);
+// });
 
 module.exports = app;

@@ -1,0 +1,22 @@
+extend layout
+
+block content
+    script(src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous")
+    script(src="/javascripts/manage-control.js" crossorigin="anonymous")
+    .block-noPad
+        .container
+            h1 Manager Dashboard
+            hr
+            .controlFrame
+                button#addProfessors.btnControl Add Professors
+                button#deleteProfessors.btnControl Delete Professors
+                button#promoteUsers.btnControl Promote
+                button#disgraceUsers.btnControl Disgrace
+                button#viewProfessors.btnControl View Professors
+                button#viewUsers.btnControl View Users
+            .split50
+                .split50Left
+                    textarea#inputList(name="inputList" class="inputListTextArea")
+                .split50Right
+                    textarea#result(name="result" class="inputListTextArea textReadOnly" readonly)
+                .clr
