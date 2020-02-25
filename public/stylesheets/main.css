@@ -247,6 +247,7 @@ select {
     border-radius: 4px;
     box-sizing: border-box;
     font-size: 15px;
+    background: #ececec;
 }
 
 input[type=password] {
@@ -258,6 +259,7 @@ input[type=password] {
     border-radius: 4px;
     box-sizing: border-box;
     font-size: 15px;
+    background: #ececec;
 }
 
 input[type=submit] {
@@ -526,6 +528,7 @@ h1 {
     background: antiquewhite;
     padding: 10px;
     line-height: 15px;
+    border-radius: 3px;
 }
 
 .inputListTextArea:focus {
