@@ -2,6 +2,7 @@ extend layout
 
 block content
     script(src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous")
+    script(src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous")
     script(src="/javascripts/manage-control.js" crossorigin="anonymous")
     .block-noPad
         .container
@@ -18,11 +19,13 @@ block content
                 button#viewProfUsers.btnControl View Prof. Users
                 button#viewStudUsers.btnControl View Stud. Users
                 button#activateUsers.btnControl Activate Users
-                button#sendActivationCode.btnControl Send Activation Code
+                button#sendActivationCode.btnControl Send Code
             .split50
                 .split50Left
                     textarea#inputList(name="inputList" class="inputListTextArea" placeholder="Input ...")
                 .split50Right
                     input#filter(type="text", name="filter" class="filter" placeholder="Filter")
+                    #appender-outter
+                        #appender-inner
                     textarea#result(name="result" class="inputListTextArea textReadOnly" placeholder="Result ..." readonly)
                 .clr

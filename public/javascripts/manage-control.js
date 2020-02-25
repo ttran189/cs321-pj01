@@ -1,3 +1,6 @@
+let results = [];
+let test = ["123","456","789","123","1234"];
+
 $(function () {
     $("#addProfessors").on("click", ajaxAddProfessors);
     $("#viewProfessors").on("click", ajaxViewProfessors);
@@ -66,7 +69,7 @@ $(function () {
             },
         })
     }
-    
+
     function ajaxDeleteProfessors() {
         $.ajax({
             url: "/manage/deleteProfessors",
@@ -90,10 +93,17 @@ $(function () {
                 if (res != "") {
                     let objList = JSON.parse(res);
                     let string = "";
+                    results = [];
                     objList.forEach(element => {
                         string += element.email + "\r\n";
+                        results.push(element.email);
                     });
                     $("#result").val(string);
+                    // $("#filter").autocomplete({
+                    //     delay: 0,
+                    //     source: results,
+                    //     appendTo: '#appender-inner'
+                    // });
                 }
             }
         })
