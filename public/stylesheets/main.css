@@ -529,6 +529,7 @@ h1 {
     padding: 10px;
     line-height: 15px;
     border-radius: 3px;
+    font-size: 15px;
 }
 
 .inputListTextArea:focus {
@@ -553,4 +554,17 @@ h1 {
 .textReadOnly {
     background: #dadada;
     border: 1px solid #6f6f6f;
+    height: 243px;
+}
+
+.filter {
+    width: 455px !important;
+    margin: 0 !important;
+    margin-bottom: 15px !important;
+    border-radius: 3px !important;
+    border: 1px solid #6f6f6f !important;
+}
+
+.filter:focus {
+    outline: none;
 }

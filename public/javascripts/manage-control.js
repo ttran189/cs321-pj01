@@ -5,6 +5,11 @@ $(function () {
     $("#viewUsers").on("click", ajaxViewUsers);
     $("#promoteUsers").on("click", ajaxPromoteUsers);
     $("#disgraceUsers").on("click", ajaxDisgraceUsers);
+    $("#viewUnverifiedUsers").on("click", ajaxUnverifiedUsers);
+    $("#viewProfUsers").on("click", ajaxViewProfUsers);
+    $("#viewStudUsers").on("click", ajaxViewStudUsers);
+    $("#activateUsers").on("click", ajaxActivateUsers);
+    $("#sendActivationCode").on("click", ajaxSendActivationCode);
 
     function ajaxAddProfessors() {
         $.ajax({
@@ -94,6 +99,24 @@ $(function () {
         })
     }
 
+    function ajaxUnverifiedUsers() {
+        $.ajax({
+            url: "/manage/viewUnverifiedUsers",
+            method: "GET",
+            contentType: "application/json",
+            success: function (res) {
+                if (res != "") {
+                    let objList = JSON.parse(res);
+                    let string = "";
+                    objList.forEach(element => {
+                        string += element.email + "\r\n";
+                    });
+                    $("#result").val(string);
+                }
+            }
+        })
+    }
+
     function ajaxViewUsers() {
         $.ajax({
             url: "/manage/viewUsers",
@@ -109,6 +132,70 @@ $(function () {
                     $("#result").val(string);
                 }
             }
+        })
+    }
+
+    function ajaxViewProfUsers() {
+        $.ajax({
+            url: "/manage/viewProfUsers",
+            method: "GET",
+            contentType: "application/json",
+            success: function (res) {
+                if (res != "") {
+                    let objList = JSON.parse(res);
+                    let string = "";
+                    objList.forEach(element => {
+                        string += element.email + "\r\n";
+                    });
+                    $("#result").val(string);
+                }
+            }
+        })
+    }
+
+    function ajaxViewStudUsers() {
+        $.ajax({
+            url: "/manage/viewStudUsers",
+            method: "GET",
+            contentType: "application/json",
+            success: function (res) {
+                if (res != "") {
+                    let objList = JSON.parse(res);
+                    let string = "";
+                    objList.forEach(element => {
+                        string += element.email + "\r\n";
+                    });
+                    $("#result").val(string);
+                }
+            }
+        })
+    }
+
+    function ajaxActivateUsers() {
+        $.ajax({
+            url: "/manage/activateUsers",
+            method: "POST",
+            contentType: "application/json",
+            data: JSON.stringify({
+                list: $("#inputList").val()
+            }),
+            success: function (res) {
+                console.log(res);
+            },
+        })
+    }
+
+    function ajaxSendActivationCode() {
+        $.ajax({
+            url: "/manage/sendActivationCode",
+            method: "POST",
+            contentType: "application/json",
+            data: JSON.stringify({
+                list: $("#inputList").val()
+            }),
+            success: function (res) {
+                console.log(res);
+            },
         })
     }
 

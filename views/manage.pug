@@ -8,15 +8,21 @@ block content
             h1 Manager Dashboard
             hr
             .controlFrame
-                button#addProfessors.btnControl Add Professors
-                button#deleteProfessors.btnControl Delete Professors
+                button#addProfessors.btnControl + Prof.
+                button#deleteProfessors.btnControl - Prof.
+                button#viewProfessors.btnControl View Prof.
                 button#promoteUsers.btnControl Promote
                 button#disgraceUsers.btnControl Disgrace
-                button#viewProfessors.btnControl View Professors
-                button#viewUsers.btnControl View Users
+                button#viewUsers.btnControl View All Users
+                button#viewUnverifiedUsers.btnControl View Unverified Users
+                button#viewProfUsers.btnControl View Prof. Users
+                button#viewStudUsers.btnControl View Stud. Users
+                button#activateUsers.btnControl Activate Users
+                button#sendActivationCode.btnControl Send Activation Code
             .split50
                 .split50Left
-                    textarea#inputList(name="inputList" class="inputListTextArea")
+                    textarea#inputList(name="inputList" class="inputListTextArea" placeholder="Input ...")
                 .split50Right
-                    textarea#result(name="result" class="inputListTextArea textReadOnly" readonly)
+                    input#filter(type="text", name="filter" class="filter" placeholder="Filter")
+                    textarea#result(name="result" class="inputListTextArea textReadOnly" placeholder="Result ..." readonly)
                 .clr
