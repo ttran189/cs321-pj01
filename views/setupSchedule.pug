@@ -3,6 +3,7 @@ extend layout
 block content
     script(src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous")
     script(src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous")
+    script(src="/javascripts/TimeScheduler.js" crossorigin="anonymous")
     script(src="/javascripts/scheduler-control.js" crossorigin="anonymous")
     .block-noPad
         .container
@@ -28,15 +29,15 @@ block content
                     let hours = ["1","2","3","4","5","6","7","8","10","11","12"];
 
                     let minutes = [
-                        {value: 1, text: "00"},
-                        {value: 2, text: "15"},
-                        {value: 3, text: "30"},
-                        {value: 4, text: "45"}
+                        {value: 0, text: "00"},
+                        {value: 15, text: "15"},
+                        {value: 30, text: "30"},
+                        {value: 45, text: "45"}
                     ];
 
                     let timeShift = [
-                        {value: 1, text: "AM"},
-                        {value: 2, text: "PM"}
+                        {value: "AM", text: "AM"},
+                        {value: "PM", text: "PM"}
                     ];
 
         
@@ -48,7 +49,7 @@ block content
                     each item in hours
                         option(value=item) #{item}
 
-                select#selectionMinutes1.selectGeneral.setupTime
+                select#selectionMinute1.selectGeneral.setupTime
                     each item in minutes
                         option(value=item.value) #{item.text}
                 
@@ -60,7 +61,7 @@ block content
                     each item in hours
                         option(value=item) #{item}
 
-                select#selectionMinutes2.selectGeneral.setupTime
+                select#selectionMinute2.selectGeneral.setupTime
                     each item in minutes
                         option(value=item.value) #{item.text}
                 
@@ -68,7 +69,7 @@ block content
                     each item in timeShift
                         option(value=item.value) #{item.text}
                 
-                input(type="submit" value="+" class="sc_add")
+                input(id="add" type="submit" value="+" class="sc_add")
 
                 .clr
             
