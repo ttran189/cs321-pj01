@@ -11,21 +11,27 @@ block content
             .controlFrame
                 button#addProfessors.btnControl + Prof.
                 button#deleteProfessors.btnControl - Prof.
-                button#viewProfessors.btnControl View Prof.
+                button#viewProfessors.btnControl * Prof.
+                button#addClasses.btnControl + Class.
+                button#deleteClasses.btnControl - Class.
+                button#viewClasses.btnControl * Class.
                 button#promoteUsers.btnControl Promote
                 button#disgraceUsers.btnControl Disgrace
-                button#viewUsers.btnControl View All Users
-                button#viewUnverifiedUsers.btnControl View Unverified Users
-                button#viewProfUsers.btnControl View Prof. Users
-                button#viewStudUsers.btnControl View Stud. Users
-                button#activateUsers.btnControl Activate Users
-                button#sendActivationCode.btnControl Send Code
+                button#viewUsers.btnControl * Users
+                button#viewUnverifiedUsers.btnControl * Unverified
+                button#viewProfUsers.btnControl * Professors
+                button#viewStudUsers.btnControl * Students
+                button#activateUsers.btnControl ^ Users
+                button#sendActivationCode.btnControl Send ^
             .split50
                 .split50Left
-                    textarea#inputList(name="inputList" class="inputListTextArea" placeholder="Input ...")
+                    .inputContainer
+                        textarea#inputList(name="inputList" class="inputListTextArea" placeholder="Input ...")
                 .split50Right
-                    input#filter(type="text", name="filter" class="filter" placeholder="Filter")
+                    .filterContainer
+                        input#filter(type="text", name="filter" class="filter" placeholder="Filter")
                     #appender-outter
                         #appender-inner
-                    textarea#result(name="result" class="inputListTextArea textReadOnly" placeholder="Result ..." readonly)
+                    .resultContainer
+                        textarea#result(name="result" class="inputListTextArea textReadOnly" placeholder="Result ..." readonly)
                 .clr

@@ -12,6 +12,7 @@ const passport = require('passport');
 const indexRouter = require('./routes/index');
 const userRouter = require('./routes/user');
 const manageRouter = require('./routes/manage');
+const scheduleRouter = require('./routes/schedule');
 
 const app = express();
 
@@ -64,11 +65,13 @@ app.use((req, res, next) => {
 	res.locals.error = req.flash('error');
 	next();
 });
+global.globalStr
 
 // Routing
 app.use('/', indexRouter);
 app.use('/user', userRouter);
 app.use('/manage', manageRouter);
+app.use('/scheduler', scheduleRouter);
 
 // Catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -5,6 +5,9 @@ $(function () {
     $("#addProfessors").on("click", ajaxAddProfessors);
     $("#viewProfessors").on("click", ajaxViewProfessors);
     $("#deleteProfessors").on("click", ajaxDeleteProfessors);
+    $("#addClasses").on("click", ajaxAddClasses);
+    $("#viewClasses").on("click", ajaxViewClasses);
+    $("#deleteClasses").on("click", ajaxDeleteClasses);
     $("#viewUsers").on("click", ajaxViewUsers);
     $("#promoteUsers").on("click", ajaxPromoteUsers);
     $("#disgraceUsers").on("click", ajaxDisgraceUsers);
@@ -99,11 +102,54 @@ $(function () {
                         results.push(element.email);
                     });
                     $("#result").val(string);
-                    // $("#filter").autocomplete({
-                    //     delay: 0,
-                    //     source: results,
-                    //     appendTo: '#appender-inner'
-                    // });
+                }
+            }
+        })
+    }
+
+    function ajaxAddClasses() {
+        $.ajax({
+            url: "/manage/addClasses",
+            method: "POST",
+            contentType: "application/json",
+            data: JSON.stringify({
+                list: $("#inputList").val()
+            }),
+            success: function (res) {
+                console.log(res);
+            },
+        })
+    }
+
+    function ajaxDeleteClasses() {
+        $.ajax({
+            url: "/manage/deleteClasses",
+            method: "POST",
+            contentType: "application/json",
+            data: JSON.stringify({
+                list: $("#inputList").val()
+            }),
+            success: function (res) {
+                console.log(res);
+            },
+        })
+    }
+
+    function ajaxViewClasses() {
+        $.ajax({
+            url: "/manage/viewClasses",
+            method: "GET",
+            contentType: "application/json",
+            success: function (res) {
+                if (res != "") {
+                    let objList = JSON.parse(res);
+                    let string = "";
+                    results = [];
+                    objList.forEach(element => {
+                        string += element.code + "\r\n";
+                        results.push(element.code);
+                    });
+                    $("#result").val(string);
                 }
             }
         })

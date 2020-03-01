@@ -1,0 +1,74 @@
+extend layout
+
+block content
+    script(src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous")
+    script(src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous")
+    script(src="/javascripts/scheduler-control.js" crossorigin="anonymous")
+    .block-noPad
+        .container
+            h1 Professor Scheduler <br>
+            hr
+            .professorName= user.name
+                       
+            .div
+                select#classCode.selectGeneral
+                    each item in classModel
+                        option(value=item.code) #{item.code}
+                -
+                    let days = [
+                        {value: 1, text: "Monday"},
+                        {value: 2, text: "Tuesday"},
+                        {value: 3, text: "Wednesday"},
+                        {value: 4, text: "Thursday"},
+                        {value: 5, text: "Friday"},
+                        {value: 6, text: "Saturday"},
+                        {value: 7, text: "Sunday"}
+                    ];
+
+                    let hours = ["1","2","3","4","5","6","7","8","10","11","12"];
+
+                    let minutes = [
+                        {value: 1, text: "00"},
+                        {value: 2, text: "15"},
+                        {value: 3, text: "30"},
+                        {value: 4, text: "45"}
+                    ];
+
+                    let timeShift = [
+                        {value: 1, text: "AM"},
+                        {value: 2, text: "PM"}
+                    ];
+
+        
+                select#selectionDay.selectGeneral.setupTime
+                    each item in days
+                        option(value=item.value) #{item.text}
+
+                select#selectionHour1.selectGeneral.setupTime
+                    each item in hours
+                        option(value=item) #{item}
+
+                select#selectionMinutes1.selectGeneral.setupTime
+                    each item in minutes
+                        option(value=item.value) #{item.text}
+                
+                select#selectionTimeShift1.selectGeneral.setupTime
+                    each item in timeShift
+                        option(value=item.value) #{item.text}
+
+                select#selectionHour2.selectGeneral.setupTime
+                    each item in hours
+                        option(value=item) #{item}
+
+                select#selectionMinutes2.selectGeneral.setupTime
+                    each item in minutes
+                        option(value=item.value) #{item.text}
+                
+                select#selectionTimeShift2.selectGeneral.setupTime
+                    each item in timeShift
+                        option(value=item.value) #{item.text}
+                
+                input(type="submit" value="+" class="sc_add")
+
+                .clr
+            

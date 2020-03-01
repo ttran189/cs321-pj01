@@ -4,12 +4,15 @@ const {
 	ensureAuthenticated
 } = require('../config/auth');
 
-/* GET home page. */
-// router.get('/', function (req, res, next) {
-// 	res.render('index', {
-// 		title: 'Home'
-// 	});
-// });
+// DEVELOPMENT MODE
+const DEVMODE = require('../config/global').DEVMODE;
+
+/* User model */
+const User = require('../models/User');
+
+/* Class model */
+const ClassModel = require('../models/ClassModel');
+
 router.get('/', function (req, res, next) {
 	res.redirect('/user/login');
 });
@@ -20,5 +23,6 @@ router.get('/dashboard', ensureAuthenticated, (req, res, next) =>
 		title: 'Dashboard',
 		name: req.user.name
 	}));
+
 
 module.exports = router;
