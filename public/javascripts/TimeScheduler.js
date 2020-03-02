@@ -67,11 +67,11 @@ class TimeScheduler {
         let interval = this.getInterval(timeSchedulerObj);
         if(interval.length === 0)
             return "";
-
+        //console.log(interval);
         let lastObj = new TimeScheduler(this.session);
         let slotEndID = interval[interval.length - 1];
         lastObj.parse(slotEndID);
-
+        //console.log(lastObj);
         return "From " + this.toString(1) + " To " + lastObj.toString(2);
     }
 
@@ -152,7 +152,7 @@ class TimeScheduler {
                     minute = "0" + this.minute;
                 else
                     minute = this.minute;
-                timeString = hour + ":" + minute + " " + this.shift;
+                timeString = hour + ":" + minute;
                 break;
             case 2:
                 if (this.hourEnd < 10)
@@ -164,7 +164,7 @@ class TimeScheduler {
                     minute = "0" + this.minuteEnd;
                 else
                     minute = this.minuteEnd;
-                timeString = hour + ":" + minute + " " + this.shiftEnd;
+                timeString = hour + ":" + minute;
                 break;
             case 3:
                 let tmp1 = this.toString(1);

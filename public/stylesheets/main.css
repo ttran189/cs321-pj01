@@ -378,19 +378,16 @@ select:invalid {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 .sc_delete {
-    width: 17px;
-    height: 17px;
-    float: left;
+    display: inline;
     margin-right: 10px;
     font-family: Arial, sans-serif;
     font-size: 13px;
     cursor: pointer;
     text-align: center;
-    margin-top: -3px;
     padding: 1px;
     border-radius: 3px;
     padding-top: 3px;
@@ -648,4 +645,21 @@ h1 {
     margin-bottom: 10px;
     margin-top: 10px;
     background: #f7e2e2;
+}
+
+.scheduleColumn {
+    min-width: 150px;
+    display: inline-block;
+}
+
+.scheduleHeader {
+    background: lightblue;
+    color: blue;
+}
+
+.scheduleColumn {
+    font-size: 15px;
+    padding: 10px;
+    border-right: 1px solid #FFF;
+    border-bottom: 1px solid lightblue;
 }
