@@ -1,3 +1,10 @@
+/**
+ * Time Scheduler
+ * @author: Trung Tran
+ * @class:  TimeScheduler Class
+ * @summary: Used for managing time input from users
+ */
+
 class TimeScheduler {
     /**
      * Create a TimeScheduler Object
@@ -21,7 +28,7 @@ class TimeScheduler {
      * @param shift hour += 12 if PM
      */
     slotifty(hour, minute, shift) {
-        if(hour < 0 || hour > 23 || minute < 0 || minute > (60-this.session) || (shift !== "AM" && shift !== "PM")) {
+        if (hour < 0 || hour > 23 || minute < 0 || minute > (60 - this.session) || (shift !== "AM" && shift !== "PM")) {
             console.log("Invalid hour/minute/shift, this class won't work as expected");
             console.log("hour: " + hour + " minute: " + minute + " shift: " + shift);
         }
@@ -52,11 +59,11 @@ class TimeScheduler {
         let end = timeSchedulerObj.slotID - 1;
         let interval = [];
 
-        if(end < begin) {
+        if (end < begin) {
             console.log("Invalid time!");
             return;
         } else {
-            for(let i = begin; i <= end; i++) {
+            for (let i = begin; i <= end; i++) {
                 interval.push(i);
             }
         }
@@ -65,7 +72,7 @@ class TimeScheduler {
 
     timeIntervalToString(timeSchedulerObj) {
         let interval = this.getInterval(timeSchedulerObj);
-        if(interval.length === 0)
+        if (interval.length === 0)
             return "";
         //console.log(interval);
         let lastObj = new TimeScheduler(this.session);

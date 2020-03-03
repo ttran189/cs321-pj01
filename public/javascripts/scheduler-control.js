@@ -78,9 +78,9 @@ $(function () {
         let minute2 = parseInt($("#selectionMinute2").val());
         let timeshift2 = $("#selectionTimeShift2").val();
 
-        let begin = new TimeScheduler(15);
+        let begin = new TimeScheduler(appLength);
         let slotID1 = begin.slotifty(hour1, minute1, timeshift1);
-        let end = new TimeScheduler(15);
+        let end = new TimeScheduler(appLength);
         let slotID2 = end.slotifty(hour2, minute2, timeshift2);
         if (slotID1 >= slotID2) {
             alert("Invalid input, please reselect the times");

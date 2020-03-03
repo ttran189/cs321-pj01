@@ -383,7 +383,6 @@ select:invalid {
 
 .sc_delete {
     display: inline;
-    margin-right: 10px;
     font-family: Arial, sans-serif;
     font-size: 13px;
     cursor: pointer;

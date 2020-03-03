@@ -19,13 +19,69 @@ class TimeSlotObj {
         this.sunday = scheduleFromDb.sunday;
     }
 
-    hasConflict(dayIntervalArr, interval) {
+    // hasConflict(dayIntervalArr, interval) {
+    //     let result = false;
+    //     for (let i = 0; i < dayIntervalArr.length; i++) {
+    //         let z = _.intersection(dayIntervalArr[i].slots, interval);
+    //         if (z.length !== 0) {
+    //             console.log("Conflict slots detected:");
+    //             console.log(z);
+    //             result = true;
+    //             break;
+    //         }
+    //     }
+    //     return result;
+    // }
+
+    toBase5Arr(slotArr, base) {
+        let tmp = [];
+        let key;
+        switch (base) {
+            case 10:
+                key = 10 / 5;
+                break;
+            case 15:
+                key = 15 / 5;
+                break;
+            case 20:
+                key = 20 / 5;
+                break;
+            case 30:
+                key = 30 / 5;
+                break;
+        }
+        slotArr.forEach(element => {
+            let i = key;
+            let newBase5Element = key * element - key + 1;
+            while (i > 0) {
+                tmp.push(newBase5Element++);
+                i--;
+            }
+        });
+        return tmp;
+    }
+
+    hasConflict(dayMultiSlots, slotArr, appLength) {
         let result = false;
-        for (let i = 0; i < dayIntervalArr.length; i++) {
-            let z = _.intersection(dayIntervalArr[i].slots, interval);
+        let slotArrBase5;
+        if (appLength !== 5) {
+            slotArrBase5 = this.toBase5Arr(slotArr, appLength);
+        } else {
+            slotArrBase5 = slotArr;
+        }
+        for (let i = 0; i < dayMultiSlots.length; i++) {
+            let tmp;
+            if (dayMultiSlots[i].appLength !== 5) {
+                tmp = this.toBase5Arr(dayMultiSlots[i].slots, dayMultiSlots[i].appLength);
+            } else {
+                tmp = dayMultiSlots[i].slots;
+            }
+            let z = _.intersection(tmp, slotArrBase5);
             if (z.length !== 0) {
                 console.log("Conflict slots detected:");
                 console.log(z);
+                console.log(tmp);
+                console.log(slotArrBase5);
                 result = true;
                 break;
             }
@@ -33,52 +89,52 @@ class TimeSlotObj {
         return result;
     }
 
-    pushTime(classCode, dayInt, interval, appLength) {
+    pushTime(classCode, dayInt, slotArr, appLength) {
         let obj = {
             classCode: classCode,
             appLength: appLength,
-            slots: interval
+            slots: slotArr
         }
 
         switch (dayInt) {
             case 1:
-                if (!this.hasConflict(this.monday, obj.slots)) {
+                if (!this.hasConflict(this.monday, obj.slots, obj.appLength)) {
                     this.monday.push(obj);
                     return true;
                 }
                 break;
             case 2:
-                if (!this.hasConflict(this.tuesday, obj.slots)) {
+                if (!this.hasConflict(this.tuesday, obj.slots, obj.appLength)) {
                     this.tuesday.push(obj);
                     return true;
                 }
                 break;
             case 3:
-                if (!this.hasConflict(this.wednesday, obj.slots)) {
+                if (!this.hasConflict(this.wednesday, obj.slots, obj.appLength)) {
                     this.wednesday.push(obj);
                     return true;
                 }
                 break;
             case 4:
-                if (!this.hasConflict(this.thursday, obj.slots)) {
+                if (!this.hasConflict(this.thursday, obj.slots, obj.appLength)) {
                     this.thursday.push(obj);
                     return true;
                 }
                 break;
             case 5:
-                if (!this.hasConflict(this.friday, obj.slots)) {
+                if (!this.hasConflict(this.friday, obj.slots, obj.appLength)) {
                     this.friday.push(obj);
                     return true;
                 }
                 break;
             case 6:
-                if (!this.hasConflict(this.saturday, obj.slots)) {
+                if (!this.hasConflict(this.saturday, obj.slots, obj.appLength)) {
                     this.saturday.push(obj);
                     return true;
                 }
                 break;
             case 7:
-                if (!this.hasConflict(this.sunday, obj.slots)) {
+                if (!this.hasConflict(this.sunday, obj.slots, obj.appLength)) {
                     scheduleObject.sunday.push(obj);
                     return true;
                 }
@@ -86,7 +142,6 @@ class TimeSlotObj {
             default:
                 return false;
         }
-
         return false;
     }
 
@@ -205,12 +260,36 @@ class TimeSlotObj {
         return flag;
     }
 
+    toSessionText(slotArr, appLength) {
+        let slotNum = slotArr.length;
+        let totalMinutes = slotNum * appLength;
+        let hour = 0;
+        let minute = 0;
+        if (Math.floor(totalMinutes % 60) !== 0) {
+            hour = Math.floor(totalMinutes / 60);
+            minute = totalMinutes - (60 * hour);
+        } else {
+            if (totalMinutes >= 60) {
+                hour = Math.floor(totalMinutes / 60);
+                minute = totalMinutes - (60 * hour);
+            } else {
+                hour = 0;
+                minute = totalMinutes;
+            }
+        }
+        return {
+            hourAmount: hour,
+            minuteAmount: minute
+        }
+    }
+
     buildView(index) {
         let view = '<div class="scheduleTable">';
         view += '<div class="scheduleRow">';
         view += '<div class="scheduleColumn scheduleHeader">Day</div>';
         view += '<div class="scheduleColumn scheduleHeader">Class</div>';
         view += '<div class="scheduleColumn scheduleHeader">Time</div>';
+        view += '<div class="scheduleColumn scheduleHeader">Session</div>';
         view += '<div class="scheduleColumn scheduleHeader">Appointment</div>';
         view += '<div class="scheduleColumn scheduleHeader">Availibilities</div>';
         view += '<div class="scheduleColumn scheduleHeader">Control</div>';
@@ -230,14 +309,21 @@ class TimeSlotObj {
                     view += slotObj.classCode;
                     view += '</div>';
                     view += '<div class="scheduleColumn">';
-                    let begin = new TimeScheduler(15);
-                    let end = new TimeScheduler(15);
+                    let begin = new TimeScheduler(slotObj.appLength);
+                    let end = new TimeScheduler(slotObj.appLength);
                     let slotID1 = slotObj.slots[0];
                     let slotID2 = slotObj.slots[slotObj.slots.length - 1];
                     begin.parse(slotID1);
                     end.parse(slotID2);
                     view += begin.toString(1) + " - " + end.toString(2);
                     view += '</div>'; // close column
+                    view += '<div class="scheduleColumn">';
+                    let obj = this.toSessionText(slotObj.slots, slotObj.appLength);
+                    view += obj.hourAmount + " h(s) " + obj.minuteAmount + " m(s)";
+                    view += '</div>';
+                    view += '<div class="scheduleColumn">';
+                    view += slotObj.appLength + "'";
+                    view += '</div>';
                     view += '<div class="scheduleColumn">';
                     view += slotObj.slots.length;
                     view += '</div>';
