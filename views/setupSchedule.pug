@@ -1,79 +1,96 @@
 extend layout
 
 block content
-    script(src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous")
-    script(src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous")
-    script(src="/javascripts/Underscore.js" crossorigin="anonymous")
-    script(src="/javascripts/TimeScheduler.js" crossorigin="anonymous")
-    script(src="/javascripts/TimeSlotObj.js"  crossorigin="anonymous")
-    script(src="/javascripts/scheduler-control.js" crossorigin="anonymous")
-    .block-noPad
-        .container
-            h1 Professor Scheduler <br>
-            hr
-            .professorName= user.name
-                       
-            .div
-                select#classCode.selectGeneral
-                    each item in classModel
-                        option(value=item.code) #{item.code}
-                -
-                    let days = [
-                        {value: 1, text: "Monday"},
-                        {value: 2, text: "Tuesday"},
-                        {value: 3, text: "Wednesday"},
-                        {value: 4, text: "Thursday"},
-                        {value: 5, text: "Friday"},
-                        {value: 6, text: "Saturday"},
-                        {value: 7, text: "Sunday"}
-                    ];
+	script(src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous")
+	script(src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous")
+	script(src="/javascripts/Underscore.js" crossorigin="anonymous")
+	script(src="/javascripts/TimeScheduler.js" crossorigin="anonymous")
+	script(src="/javascripts/TimeSlotObj.js" crossorigin="anonymous")
+	script(src="/javascripts/scheduler-control.js" crossorigin="anonymous")
+	.block-noPad
+		.container
+			h1 Professor Scheduler <br>
+			hr
+			.professorName= user.name
 
-                    let hours = ["1","2","3","4","5","6","7","8","9","10","11","12"];
+			.selectionLabel
+				.selectionLabelSub.selectionLabelCustomWidth1 Class
+				.selectionLabelSub.selectionLabelCustomWidth1 Weekday
+				.selectionLabelSub.selectionLabelCustomWidth1-2 Length
+				.selectionLabelSub.selectionLabelCustomWidth2 Starting Time
+				.selectionLabelSub.selectionLabelCustomWidth2 Ending Time
+				.clr
 
-                    let minutes = [
-                        {value: 0, text: "00"},
-                        {value: 15, text: "15"},
-                        {value: 30, text: "30"},
-                        {value: 45, text: "45"}
-                    ];
+			.div
+				select#classCode.selectGeneral
+					each item in classModel
+						option(value=item.code) #{item.code}
+				-
+					let days = [
+						{value: 1, text: "Monday"},
+						{value: 2, text: "Tuesday"},
+						{value: 3, text: "Wednesday"},
+						{value: 4, text: "Thursday"},
+						{value: 5, text: "Friday"},
+						{value: 6, text: "Saturday"},
+						{value: 7, text: "Sunday"}
+					];
 
-                    let timeShift = [
-                        {value: "AM", text: "AM"},
-                        {value: "PM", text: "PM"}
-                    ];
+					let hours = ["1","2","3","4","5","6","7","8","9","10","11","12"];
 
-        
-                select#selectionDay.selectGeneral.setupTime
-                    each item in days
-                        option(value=item.value) #{item.text}
+					let minutes = [
+						{value: 0, text: "00"},
+						{value: 15, text: "15"},
+						{value: 30, text: "30"},
+						{value: 45, text: "45"}
+					];
 
-                select#selectionHour1.selectGeneral.setupTime
-                    each item in hours
-                        option(value=item) #{item}
+					let timeShift = [
+						{value: "AM", text: "AM"},
+						{value: "PM", text: "PM"}
+					];
 
-                select#selectionMinute1.selectGeneral.setupTime
-                    each item in minutes
-                        option(value=item.value) #{item.text}
-                
-                select#selectionTimeShift1.selectGeneral.setupTime
-                    each item in timeShift
-                        option(value=item.value) #{item.text}
+					let appLengths = ["5","10","15","20","30"];
 
-                select#selectionHour2.selectGeneral.setupTime
-                    each item in hours
-                        option(value=item) #{item}
+				select#selectionDay.selectGeneral.setupTime
+					each item in days
+						option(value=item.value) #{item.text}
 
-                select#selectionMinute2.selectGeneral.setupTime
-                    each item in minutes
-                        option(value=item.value) #{item.text}
-                
-                select#selectionTimeShift2.selectGeneral.setupTime
-                    each item in timeShift
-                        option(value=item.value) #{item.text}
-                
-                input(id="add" type="submit" value="+" class="sc_add")
+				select#selectionAppLength.selectGeneral.setupTime
+					each item in appLengths
+						option(value=item) #{item}
 
-                .clr
-            
-            #scheduleData
-            
+				select#selectionHour1.selectGeneral.setupTime
+					each item in hours
+						option(value=item) #{item}
+
+				select#selectionMinute1.selectGeneral.setupTime
+					each item in minutes
+						option(value=item.value) #{item.text}
+
+				select#selectionTimeShift1.selectGeneral.setupTime
+					each item in timeShift
+						option(value=item.value) #{item.text}
+
+				select#selectionHour2.selectGeneral.setupTime
+					each item in hours
+						option(value=item) #{item}
+
+				select#selectionMinute2.selectGeneral.setupTime
+					each item in minutes
+						option(value=item.value) #{item.text}
+
+				select#selectionTimeShift2.selectGeneral.setupTime
+					each item in timeShift
+						option(value=item.value) #{item.text}
+
+				input(id="add" type="submit" value="+" class="sc_add")
+
+				.clr
+
+			#scheduleData
+			script.
+				let scheduleDB = !{JSON.stringify(user)};
+				loadAndBuild(scheduleDB.schedule);
+
+			input(type="button" value="Save" id="saveSchedule" class="btnControl btnSaving")

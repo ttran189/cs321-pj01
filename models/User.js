@@ -28,6 +28,138 @@ const UserSchema = new mongoose.Schema({
     date: {
         type: Date,
         default: Date.now
+    },
+    scheduleCount: {
+        type: Number,
+        default: 0
+    },
+    schedule: {
+        monday: [{
+            classCode: {
+                type: String,
+                required: false
+            },
+            appLength: {
+                type: Number,
+                required: false
+            },
+            slots: {
+                type: [Number],
+                required: false
+            },
+            lastUpdate: {
+                type: Date,
+                default: Date.now
+            }
+        }],
+        tuesday: [{
+            classCode: {
+                type: String,
+                required: false
+            },
+            appLength: {
+                type: Number,
+                required: false
+            },
+            slots: {
+                type: [Number],
+                required: false
+            },
+            lastUpdate: {
+                type: Date,
+                default: Date.now
+            }
+        }],
+        wednesday: [{
+            classCode: {
+                type: String,
+                required: false
+            },
+            appLength: {
+                type: Number,
+                required: false
+            },
+            slots: {
+                type: [Number],
+                required: false
+            },
+            lastUpdate: {
+                type: Date,
+                default: Date.now
+            }
+        }],
+        thursday: [{
+            classCode: {
+                type: String,
+                required: false
+            },
+            appLength: {
+                type: Number,
+                required: false
+            },
+            slots: {
+                type: [Number],
+                required: false
+            },
+            lastUpdate: {
+                type: Date,
+                default: Date.now
+            }
+        }],
+        friday: [{
+            classCode: {
+                type: String,
+                required: false
+            },
+            appLength: {
+                type: Number,
+                required: false
+            },
+            slots: {
+                type: [Number],
+                required: false
+            },
+            lastUpdate: {
+                type: Date,
+                default: Date.now
+            }
+        }],
+        saturday: [{
+            classCode: {
+                type: String,
+                required: false
+            },
+            appLength: {
+                type: Number,
+                required: false
+            },
+            slots: {
+                type: [Number],
+                required: false
+            },
+            lastUpdate: {
+                type: Date,
+                default: Date.now
+            }
+        }],
+        sunday: [{
+            classCode: {
+                type: String,
+                required: false
+            },
+            appLength: {
+                type: Number,
+                required: false
+            },
+            slots: {
+                type: [Number],
+                required: false
+            },
+            lastUpdate: {
+                type: Date,
+                default: Date.now
+            }
+        }]
     }
 });
 

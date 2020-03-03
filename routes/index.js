@@ -14,7 +14,13 @@ const User = require('../models/User');
 const ClassModel = require('../models/ClassModel');
 
 router.get('/', function (req, res, next) {
-	res.redirect('/user/login');
+	User.find().lean().exec((err, data) => {
+		console.log(data);
+		res.render('home', {
+			title: 'Home',
+			users: data
+		})
+	});
 });
 
 /* GET dashboard page. */

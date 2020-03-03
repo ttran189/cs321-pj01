@@ -9,6 +9,16 @@ class TimeSlotObj {
         this.sunday = [];
     }
 
+    loadSchedule(scheduleFromDb) {
+        this.monday = scheduleFromDb.monday;
+        this.tuesday = scheduleFromDb.tuesday;
+        this.wednesday = scheduleFromDb.wednesday;
+        this.thursday = scheduleFromDb.thursday;
+        this.friday = scheduleFromDb.friday;
+        this.saturday = scheduleFromDb.saturday;
+        this.sunday = scheduleFromDb.sunday;
+    }
+
     hasConflict(dayIntervalArr, interval) {
         let result = false;
         for (let i = 0; i < dayIntervalArr.length; i++) {
@@ -23,9 +33,10 @@ class TimeSlotObj {
         return result;
     }
 
-    pushTime(classCode, dayInt, interval) {
+    pushTime(classCode, dayInt, interval, appLength) {
         let obj = {
-            code: classCode,
+            classCode: classCode,
+            appLength: appLength,
             slots: interval
         }
 
@@ -77,6 +88,32 @@ class TimeSlotObj {
         }
 
         return false;
+    }
+
+    getScheduleCount() {
+        let count = 0;
+        if (this.monday.length !== 0) {
+            count += this.monday.length;
+        }
+        if (this.tuesday.length !== 0) {
+            count += this.tuesday.length;
+        }
+        if (this.wednesday.length !== 0) {
+            count += this.wednesday.length;
+        }
+        if (this.thursday.length !== 0) {
+            count += this.thursday.length;
+        }
+        if (this.friday.length !== 0) {
+            count += this.friday.length;
+        }
+        if (this.saturday.length !== 0) {
+            count += this.saturday.length;
+        }
+        if (this.sunday.length !== 0) {
+            count += this.sunday.length;
+        }
+        return count;
     }
 
     getDayText(dayInt) {
@@ -174,7 +211,8 @@ class TimeSlotObj {
         view += '<div class="scheduleColumn scheduleHeader">Day</div>';
         view += '<div class="scheduleColumn scheduleHeader">Class</div>';
         view += '<div class="scheduleColumn scheduleHeader">Time</div>';
-        view += '<div class="scheduleColumn scheduleHeader">Slot No.</div>';
+        view += '<div class="scheduleColumn scheduleHeader">Appointment</div>';
+        view += '<div class="scheduleColumn scheduleHeader">Availibilities</div>';
         view += '<div class="scheduleColumn scheduleHeader">Control</div>';
         view += '</div>';
         let arr = [this.monday, this.tuesday, this.wednesday, this.thursday, this.friday, this.saturday, this.sunday];
@@ -189,7 +227,7 @@ class TimeSlotObj {
                     view += dayStr;
                     view += '</div>';
                     view += '<div class="scheduleColumn">';
-                    view += slotObj.code;
+                    view += slotObj.classCode;
                     view += '</div>';
                     view += '<div class="scheduleColumn">';
                     let begin = new TimeScheduler(15);

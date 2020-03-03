@@ -292,7 +292,7 @@ select:invalid {
 }
 
 .setupTime {
-    width: 65px;
+    width: 50px;
     margin-left: 20px;
     float: left;
 }
@@ -387,7 +387,6 @@ select:invalid {
     font-family: Arial, sans-serif;
     font-size: 13px;
     cursor: pointer;
-    text-align: center;
     padding: 1px;
     border-radius: 3px;
     padding-top: 3px;
@@ -628,12 +627,34 @@ h1 {
 }
 
 #selectionDay {
-    width: 120px;
+    width: 110px;
 }
 
 #classCode {
-    width: 120px;
+    width: 110px;
     float: left;
+}
+
+.selectionLabel {
+    padding-top: 10px;
+}
+
+.selectionLabelSub {
+    float: left;
+    font-weight: bold;
+    width: 110px;
+}
+
+.selectionLabelCustomWidth1 {
+    width: 130px;
+}
+
+.selectionLabelCustomWidth1-2 {
+    width: 85px;
+}
+
+.selectionLabelCustomWidth2 {
+    width: 255px;
 }
 
 .professorName {
@@ -648,7 +669,7 @@ h1 {
 }
 
 .scheduleColumn {
-    min-width: 150px;
+    min-width: 110px;
     display: inline-block;
 }
 
@@ -662,4 +683,10 @@ h1 {
     padding: 10px;
     border-right: 1px solid #FFF;
     border-bottom: 1px solid lightblue;
+}
+
+.btnSaving {
+    margin-top: 10px;
+    padding: 15px 20px;
+    font-size: 15px;
 }

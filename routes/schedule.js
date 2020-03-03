@@ -1,5 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const {
+	ensureAuthenticated
+} = require('../config/auth');
 
 // DEVELOPMENT MODE
 const DEVMODE = require('../config/global').DEVMODE;
@@ -45,34 +48,9 @@ if (DEVMODE) {
 						title: 'Schedule Set Up',
 						user: responde1,
 						classModel: responde2
-                    })
-                    
-                    let nSession1 = new Session({
-                        class: new ClassModel({
-                            code: "CS TMP1"
-                        }),
-                        slots: [1,2,3,4,5]
-                    });
-                    let nSession2 = new Session({
-                        class: new ClassModel({
-                            code: "CS TMP2"
-                        }),
-                        slots: [6,7,8,9,10]
-                    });
-                    let nSession3 = new Session({
-                        class: new ClassModel({
-                            code: "CS TMP3"
-                        }),
-                        slots: [11,12,13,14,15]
-                    });
-                    // console.log(nSession1);
-                    // console.log(nSession2);
-                    // console.log(nSession3);
-                    let nWeek = new WeeklySchedule();
-                    nWeek.monday.push(nSession1);
-                    nWeek.monday.push(nSession2);
-                    nWeek.monday.push(nSession3);
-                    console.log(nWeek);
+					});
+
+
 				});
 			});
 	});
@@ -89,5 +67,48 @@ if (DEVMODE) {
 		}
 	});
 }
+
+router.post('/update', ensureAuthenticated, (req, res, next) => {
+	if (req.user.verified == true && (req.user.role == "professor" || req.user.role == "admin")) {
+		const {
+			schedule,
+			count
+		} = req.body;
+
+		const query = {
+			email: req.user.email
+		};
+		const updatingData = {
+			"$set": {
+				"schedule": schedule,
+				"scheduleCount": count
+			}
+		}
+		const options = {
+			returnNewDocument: true
+		}
+
+		// User.findOneAndUpdate({
+		// 	email: req.user.email
+		// }, {
+		// 	schedule: schedule,
+		// 	scheduleCount: count
+		// }, (err, data) => {
+		// 	if (err === null)
+		// 		res.send("Updated successfully.");
+		// 	else
+		// 		res.send("Update failed!");
+		// });
+		User.findOneAndUpdate(query, updatingData, options)
+			.then(updatedDocument => {
+				if (updatedDocument)
+					res.send("Updated successfully: ${updatedDocument}");
+				else
+					res.send("Update failed!");
+			})
+	} else {
+		res.send("Access is required to update database.");
+	}
+});
 
 module.exports = router;
