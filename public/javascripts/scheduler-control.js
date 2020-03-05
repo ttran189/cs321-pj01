@@ -11,59 +11,35 @@ $(function () {
         var newOptions;
         switch (selection) {
             case 5:
-                newOptions = {
-                    "00": 0,
-                    "05": 5,
-                    "10": 10,
-                    "15": 15,
-                    "20": 20,
-                    "25": 25,
-                    "30": 30,
-                    "35": 35,
-                    "40": 40,
-                    "45": 45,
-                    "50": 50,
-                    "55": 55
-                }
+                newOptions =[ 
+                    0,5,10,15,20,25,30,35,40,45,50,55
+                ];
                 break;
             case 10:
-                newOptions = {
-                    "00": 0,
-                    "10": 10,
-                    "20": 20,
-                    "30": 30,
-                    "40": 40,
-                    "50": 50
-                }
+                newOptions = [0,10,20,30,40,50];
                 break;
             case 15:
-                newOptions = {
-                    "00": 0,
-                    "15": 15,
-                    "30": 30,
-                    "45": 45
-                }
+                newOptions = [0,15,30,45];
                 break;
             case 20:
-                newOptions = {
-                    "00": 0,
-                    "20": 20,
-                    "40": 40
-                }
+                newOptions = [0,20,40];
                 break;
             case 30:
-                newOptions = {
-                    "00": 0,
-                    "30": 30
-                }
+                newOptions = [0,30];
                 break;
         }
         $minute1.empty();
         $minute2.empty();
 
-        for (const [k, v] of Object.entries(newOptions)) {
-            $minute1.append($("<option></option>").attr("value", v).text(k));
-            $minute2.append($("<option></option>").attr("value", v).text(k));
+        for (let i = 0; i < newOptions.length; i++) {
+            let txt;
+            if(newOptions[i] < 10) {
+                txt = "0" + newOptions[i];
+            } else {
+                txt = newOptions[i];
+            }
+            $minute1.append($("<option></option>").attr("value", newOptions[i]).text(txt));
+            $minute2.append($("<option></option>").attr("value", newOptions[i]).text(txt));
         }
     });
 

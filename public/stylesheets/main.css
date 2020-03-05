@@ -182,14 +182,16 @@ body {
 }
 
 .logo-text {
-    font-family: monospace, serif, sans-serif;
-    font-size: 50px;
-    margin-top: 70px;
-    margin-left: 10px;
+    font-size: 30px;
+    margin-top: 45px;
+    margin-left: 100px;
     float: left;
     color: #adcac7;
     font-weight: bold;
-    text-shadow: 2px 2px #5b6766;
+    text-align: center;
+    line-height: 40px;
+    letter-spacing: 3px;
+    text-shadow: 3px 3px #1b2520;
 }
 
 .logo-img {
@@ -673,15 +675,15 @@ h1 {
 }
 
 .scheduleHeader {
-    background: lightblue;
-    color: blue;
+    background: #c9e4d6;
+    color: #044e27;
 }
 
 .scheduleColumn {
     font-size: 15px;
     padding: 10px;
     border-right: 1px solid #FFF;
-    border-bottom: 1px solid lightblue;
+    border-bottom: 1px solid #c9e4d6;
 }
 
 .btnSaving {
@@ -689,3 +691,10 @@ h1 {
     padding: 15px 20px;
     font-size: 15px;
 }
+
+/*
+Note for GMU Template
+Dark: #034220
+Light: #14693b
+Text: #c5e6d5
+*/

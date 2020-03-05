@@ -1,7 +1,10 @@
 extend layout
 
 block content
+	script(src="/javascripts/loader.js" crossorigin="anonymous")
 	.block-noPad
 		.container
-			each user in users
-				= user.name
+			#dataContainer
+			script.
+				let scheduleDB = !{JSON.stringify(users)};
+				loadAndBuild(scheduleDB);
