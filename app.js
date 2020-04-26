@@ -1,3 +1,5 @@
+//require('.env').config({path:'../.env'});
+
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
@@ -93,5 +95,11 @@ app.use(function (err, req, res, next) {
 // var server = app.listen(app.get('port'), function() {
 //   console.log('Express server listening on port ' + server.address().port);
 // });
+
+
+var listener = app.listen(80, () => {
+	console.log('Server is running ' + listener.address().port);
+});
+
 
 module.exports = app;

@@ -692,6 +692,26 @@ h1 {
     font-size: 15px;
 }
 
+.bg-modal{
+    /* display: block; */
+    height: 100%;
+    width: 100%;
+    overflow: hidden;  
+    /* background-color: rgba(0,0,0,0.7); */
+    display: hidden;
+}
+.closeBtn{
+	color: #cccccc;
+	float: right;
+	font-size: 30px;
+	cursor: pointer;
+}
+
+
+
+
+
+
 /*
 Note for GMU Template
 Dark: #034220

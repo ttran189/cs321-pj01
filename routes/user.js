@@ -5,6 +5,8 @@ const passport = require('passport');
 const emailValidator = require('email-validator');
 const nodemailer = require('nodemailer');
 
+const booking = require('../models/bookingModel');
+
 /* Mail Transponder */
 let testAccount = nodemailer.createTestAccount();
 let transporter = nodemailer.createTransport({
@@ -52,6 +54,56 @@ router.get('/register', function (req, res, next) {
 		title: 'Register'
 	});
 });
+
+router.get('/booking', function (req, res, next) {
+	res.render('booking', {
+		title: 'Booking'
+	});
+});
+
+router.get('/booking/professor', function (req, res, next) {
+	booking.find({professor: req.query.professor})
+        .then((response) => res.json(response) // res is the json returned
+    );
+});
+
+router.put('/booking', function (req, res, next) {
+	console.log("query: " + req.body.professor);
+	booking.findOneAndUpdate({professor: req.body.professor}, {schedule1: req.body.schedule1, schedule2: req.body.schedule2, schedule3: req.body.schedule3, schedule4: req.body.schedule4})
+        .then((response) => res.json(response) // res is the json returned
+    );
+});
+
+
+router.post('/booking', function (req, res) {
+	
+	var professor = req.body.professor;
+	var uclass = req.body.uclass;
+	var day = req.body.day;
+	var schedule1 = req.body.schedule1;
+	var schedule2 = req.body.schedule2;
+	var schedule3 = req.body.schedule3;
+	var schedule4 = req.body.schedule4;
+	//var schedule4 = req.body.schedule4;
+
+	var newBooking = new booking({
+		professor,
+		uclass,
+		day,
+		schedule1,
+		schedule2,
+		schedule3,
+		schedule4
+	});
+
+	module.exports = newBooking;
+	newBooking.save()
+		.then(() => res.json("Booking added!"));
+
+});
+
+
+
 
 /* POST register handle */
 router.post('/register', (req, res) => {

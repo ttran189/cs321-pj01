@@ -1,0 +1,111 @@
+extend layout
+
+block content
+    form#book-form
+        select#selectField(required='' method='post' onchange='getSchedule()')  
+            option(value='' disabled='' selected='') Choose professor...
+            option(value='Daniel Barbara') Daniel Barbara	 
+            option(value='Ivan Avramovic') Ivan Avramovic
+            option(value='Daniel Brodsky') Daniel Brodsky
+            option(value='Larry Kerschberg') Larry Kerschberg
+            option(value='Foteini Baldimtsi') Foteini Baldimtsi
+            option(value='Zoran Duric') Zoran Duric
+            option(value='Jeff Ouffutt') Jeff Ouffutt
+            option(value='Hakan Aydin') Hakan Aydin
+            option(value='Socrates Dimitriadis') Socrates Dimitriadis
+
+    .bg-modal
+        .modal-content
+            h2(style='margin-top: 50px;') Please select time interval [ 0 - 15m, 15 - 30m, 30 - 45m, 45 - 60m ]
+            #officeHourDate
+            #schedule
+
+    //- load options list but from js, based on that post (show post button and the stuff above only after choosing...)
+    //- ^^ so it's a form (when posted--post request)
+    //- in js file just make an event listener of onchange 
+    script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js")
+    script.
+        function getSchedule(){
+            var scheduleField = document.getElementById('schedule');
+            var select = document.getElementById('selectField');
+            var selectedValue = select.options[select.selectedIndex].value;
+            console.log("selected value is: " + selectedValue);
+            axios({
+                method:'get',
+                url:'http://localhost/user/booking/professor',
+                params:{
+                    professor: selectedValue
+                }
+            })
+            .then((response) => { // make if statement--if undefined (object object) then present nothing
+                // otherwise, present dropdown
+
+                var sch1 = response.data[0].schedule1;
+                var sch2 = response.data[0].schedule2;
+                var sch3 = response.data[0].schedule3;
+                var sch4 = response.data[0].schedule4;
+
+                if(!sch1)
+                    sch1 ="disabled";
+                else
+                    sch1 ="";
+
+                if(!sch2)
+                    sch2 ="disabled";
+                else
+                    sch2 ="";
+
+                if(!sch3)
+                    sch3 ="disabled";
+                else
+                    sch3 ="";
+
+                if(!sch4)
+                    sch4 ="disabled";
+                else
+                    sch4 ="";
+
+                
+
+                scheduleField.innerHTML="<form><select required id='register'><option " + sch1 + " value='1'>0 mins</option><option " + sch2 + " value='2'>15 mins</option><option " + sch3 + " value='3'>30 mins</option> <option " + sch4 +  " value='4'>45 mins</option></select><textarea>what do you want to talk about</textarea><input role='button' type='submit' value='Submit' id='submitBtn'/></form>"
+                
+                document.getElementById('submitBtn').onsubmit = function() {updateSchedule()};
+                function updateSchedule(){
+                    
+                    console.log("inside");
+
+                    var registerInterval = document.getElementById('register');
+                    var selectedInterval = registerInterval.options[registerInterval.selectedIndex].value;
+                    
+                    var newSchedule1 = response.data[0].schedule1; 
+                    var newSchedule2 = response.data[0].schedule2; 
+                    var newSchedule3 = response.data[0].schedule3; 
+                    var newSchedule4 = response.data[0].schedule4; 
+
+                    if(selectedInterval == '1')
+                        newSchedule1 = false;
+                    if(selectedInterval == '2')
+                        newSchedule2 = false;
+                    if(selectedInterval == '3')
+                        newSchedule3 = false;
+                    if(selectedInterval == '4')
+                        newSchedule4 = false;
+
+                    
+
+                    axios({
+                        method:'put',
+                        url:'http://localhost/user/booking',
+                        params:{
+                            professor: selectedValue,
+                            schedule1: newSchedule1,
+                            schedule2: newSchedule2,
+                            schedule3: newSchedule3,
+                            schedule4: newSchedule4
+                        }
+                    })
+                }
+                
+            })
+        }
+        
