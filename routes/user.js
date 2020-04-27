@@ -68,8 +68,8 @@ router.get('/booking/professor', function (req, res, next) {
 });
 
 router.put('/booking', function (req, res, next) {
-	console.log("query: " + req.body.professor);
-	booking.findOneAndUpdate({professor: req.body.professor}, {schedule1: req.body.schedule1, schedule2: req.body.schedule2, schedule3: req.body.schedule3, schedule4: req.body.schedule4})
+	console.log("query: " + req.query.professor);
+	booking.findOneAndUpdate({professor: req.query.professor}, {schedule1: req.query.schedule1, schedule2: req.query.schedule2, schedule3: req.query.schedule3, schedule4: req.query.schedule4})
         .then((response) => res.json(response) // res is the json returned
     );
 });

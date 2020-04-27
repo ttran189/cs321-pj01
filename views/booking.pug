@@ -19,7 +19,7 @@ block content
             h2(style='margin-top: 50px;') Please select time interval [ 0 - 15m, 15 - 30m, 30 - 45m, 45 - 60m ]
             #officeHourDate
             #schedule
-
+    iframe(name='hiddenFrame' id='hiddenFrame' width='0' height='0' border='0' style='display: none;')
     //- load options list but from js, based on that post (show post button and the stuff above only after choosing...)
     //- ^^ so it's a form (when posted--post request)
     //- in js file just make an event listener of onchange 
@@ -67,13 +67,18 @@ block content
 
                 
 
-                scheduleField.innerHTML="<form><select required id='register'><option " + sch1 + " value='1'>0 mins</option><option " + sch2 + " value='2'>15 mins</option><option " + sch3 + " value='3'>30 mins</option> <option " + sch4 +  " value='4'>45 mins</option></select><textarea>what do you want to talk about</textarea><input role='button' type='submit' value='Submit' id='submitBtn'/></form>"
+                scheduleField.innerHTML="<form id='subform'><select id='register' target='hiddenFrame'><option " + sch1 + " value='1'>0 mins</option><option " + sch2 + " value='2'>15 mins</option><option " + sch3 + " value='3'>30 mins</option> <option " + sch4 +  " value='4'>45 mins</option></select><textarea>what do you want to talk about</textarea><input role='button' type='submit' value='Submit' id='submitBtn'/></form>"
                 
-                document.getElementById('submitBtn').onsubmit = function() {updateSchedule()};
-                function updateSchedule(){
-                    
-                    console.log("inside");
+                
 
+                
+                // works with click but not submit
+
+                document.getElementById('subform').addEventListener('submit', (evt) => updateSchedule(evt));
+                function updateSchedule(evt){
+                    //evt.preventDefault();
+                    //alert(response.data[0].schedule1);
+                    
                     var registerInterval = document.getElementById('register');
                     var selectedInterval = registerInterval.options[registerInterval.selectedIndex].value;
                     
@@ -91,7 +96,7 @@ block content
                     if(selectedInterval == '4')
                         newSchedule4 = false;
 
-                    
+                    console.log("in");
 
                     axios({
                         method:'put',
