@@ -67,7 +67,7 @@ block content
 
                 
 
-                scheduleField.innerHTML="<form id='subform'><select id='register' target='hiddenFrame'><option " + sch1 + " value='1'>0 mins</option><option " + sch2 + " value='2'>15 mins</option><option " + sch3 + " value='3'>30 mins</option> <option " + sch4 +  " value='4'>45 mins</option></select><textarea>what do you want to talk about</textarea><input role='button' type='submit' value='Submit' id='submitBtn'/></form>"
+                scheduleField.innerHTML="<form id='subform'><select id='register' target='hiddenFrame'><option " + sch1 + " value='1'>0 mins</option><option " + sch2 + " value='2'>15 mins</option><option " + sch3 + " value='3'>30 mins</option> <option " + sch4 +  " value='4'>45 mins</option></select><textarea id='message' placeholder='Please include questions or topics you will discuss...'></textarea><input role='button' type='submit' value='Submit' id='submitBtn'/></form>"
                 
                 
 
@@ -80,21 +80,34 @@ block content
                     //alert(response.data[0].schedule1);
                     
                     var registerInterval = document.getElementById('register');
+                    var textMessage = document.getElementById('message').value;
                     var selectedInterval = registerInterval.options[registerInterval.selectedIndex].value;
                     
                     var newSchedule1 = response.data[0].schedule1; 
                     var newSchedule2 = response.data[0].schedule2; 
                     var newSchedule3 = response.data[0].schedule3; 
                     var newSchedule4 = response.data[0].schedule4; 
+                    var msg1 = response.data[0].text1;
+                    var msg2 = response.data[0].text2;
+                    var msg3 = response.data[0].text3;
+                    var msg4 = response.data[0].text4;
 
-                    if(selectedInterval == '1')
+                    if(selectedInterval == '1'){
                         newSchedule1 = false;
-                    if(selectedInterval == '2')
+                        msg1 = textMessage;
+                    }
+                    if(selectedInterval == '2'){
                         newSchedule2 = false;
-                    if(selectedInterval == '3')
+                        msg2 = textMessage;
+                    }
+                    if(selectedInterval == '3'){
                         newSchedule3 = false;
-                    if(selectedInterval == '4')
+                        msg3 = textMessage;
+                    }
+                    if(selectedInterval == '4'){
                         newSchedule4 = false;
+                        msg4 = textMessage;
+                    }
 
                     console.log("in");
 
@@ -104,9 +117,13 @@ block content
                         params:{
                             professor: selectedValue,
                             schedule1: newSchedule1,
+                            text1: msg1,
                             schedule2: newSchedule2,
+                            text2: msg2,
                             schedule3: newSchedule3,
-                            schedule4: newSchedule4
+                            text3: msg3,
+                            schedule4: newSchedule4,
+                            text4: msg4
                         }
                     })
                 }

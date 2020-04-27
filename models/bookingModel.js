@@ -13,14 +13,26 @@ const bookingSchema = new mongoose.Schema({
     schedule1: {
         type: Boolean
     },
+    text1:{
+        type: String
+    },
     schedule2: {
         type: Boolean
+    },
+    text2:{
+        type: String
     },
     schedule3: {
         type: Boolean
     },
+    text3:{
+        type: String
+    },
     schedule4: {
         type: Boolean
+    },
+    text4:{
+        type: String
     }
 });
 

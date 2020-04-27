@@ -69,7 +69,7 @@ router.get('/booking/professor', function (req, res, next) {
 
 router.put('/booking', function (req, res, next) {
 	console.log("query: " + req.query.professor);
-	booking.findOneAndUpdate({professor: req.query.professor}, {schedule1: req.query.schedule1, schedule2: req.query.schedule2, schedule3: req.query.schedule3, schedule4: req.query.schedule4})
+	booking.findOneAndUpdate({professor: req.query.professor}, {schedule1: req.query.schedule1, text1: req.query.text1, schedule2: req.query.schedule2, text2: req.query.text2, schedule3: req.query.schedule3, text3: req.query.text3 ,schedule4: req.query.schedule4, text4: req.query.text4})
         .then((response) => res.json(response) // res is the json returned
     );
 });
@@ -81,9 +81,13 @@ router.post('/booking', function (req, res) {
 	var uclass = req.body.uclass;
 	var day = req.body.day;
 	var schedule1 = req.body.schedule1;
+	var text1 = req.body.text1;
 	var schedule2 = req.body.schedule2;
+	var text2 = req.body.text2;
 	var schedule3 = req.body.schedule3;
+	var text3 = req.body.text3;
 	var schedule4 = req.body.schedule4;
+	var text4 = req.body.text4;
 	//var schedule4 = req.body.schedule4;
 
 	var newBooking = new booking({
@@ -91,9 +95,13 @@ router.post('/booking', function (req, res) {
 		uclass,
 		day,
 		schedule1,
+		text1,
 		schedule2,
+		text2,
 		schedule3,
-		schedule4
+		text3,
+		schedule4,
+		text4
 	});
 
 	module.exports = newBooking;
