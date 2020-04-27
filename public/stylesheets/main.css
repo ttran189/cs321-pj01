@@ -755,6 +755,13 @@ h1 {
     margin-bottom:300px;
 }
 
+#welcome{
+    color: green;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    position: center;
+    display: inline-block;
+}
+
 
 
 

@@ -80,7 +80,7 @@ block content
                 scheduleField.innerHTML="<form id='subform'><select id='register' required><option " + sch1 + " value='1'>" + hourNumber + ":00" + " - " + hourNumber + ":15"+" </option><option " + sch2 + " value='2'>" + hourNumber + ":15" + " - " + hourNumber + ":30"+ "</option><option " + sch3 + " value='3'>" + hourNumber + ":30" + " - " + hourNumber + ":45"+ "</option><option " + sch4 +  " value='4'>" + hourNumber + ":45" + " - " + (hourNumber + 1) + ":00"+ "</option></select><textarea id='message' placeholder='Please include questions or topics you will discuss...' class='class-input form-control comp-input input-lg' style='resize:none; margin-top:15px; margin-bottom:15px;' required></textarea><input role='button' type='submit' value='Submit' id='submitBtn'/></form>"
                 
                 var list = document.getElementById('register');
-                list.options[value='default'].remove();
+                
 
                 
                 // works with click but not submit
