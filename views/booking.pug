@@ -2,7 +2,7 @@ extend layout
 
 block content
     form#book-form
-        select#selectField(required='' method='post' onchange='getSchedule()')  
+        select#selectField(required='' method='post' onchange='getSchedule()' class='selectClassDes')  
             option(value='' disabled='' selected='') Choose professor...
             option(value='Daniel Barbara') Daniel Barbara	 
             option(value='Ivan Avramovic') Ivan Avramovic
@@ -16,16 +16,17 @@ block content
 
     .bg-modal
         .modal-content
-            h2(style='margin-top: 50px;') Please select time interval [ 0 - 15m, 15 - 30m, 30 - 45m, 45 - 60m ]
             #officeHourDate
             #schedule
-    iframe(name='hiddenFrame' id='hiddenFrame' width='0' height='0' border='0' style='display: none;')
     //- load options list but from js, based on that post (show post button and the stuff above only after choosing...)
     //- ^^ so it's a form (when posted--post request)
     //- in js file just make an event listener of onchange 
     script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js")
     script.
         function getSchedule(){
+            var doc = document.getElementById('selectField');
+            doc.classList.remove('selectClassDes');
+            var date = document.getElementById('officeHourDate');
             var scheduleField = document.getElementById('schedule');
             var select = document.getElementById('selectField');
             var selectedValue = select.options[select.selectedIndex].value;
@@ -65,11 +66,21 @@ block content
                 else
                     sch4 ="";
 
-                
+                var str = response.data[0].day;
+                var timearr = str.split(" ");
+                var time = timearr[1];
+                var time1 = time.split(":");
 
-                scheduleField.innerHTML="<form id='subform'><select id='register' target='hiddenFrame'><option " + sch1 + " value='1'>0 mins</option><option " + sch2 + " value='2'>15 mins</option><option " + sch3 + " value='3'>30 mins</option> <option " + sch4 +  " value='4'>45 mins</option></select><textarea id='message' placeholder='Please include questions or topics you will discuss...'></textarea><input role='button' type='submit' value='Submit' id='submitBtn'/></form>"
+                var hour = time1[0];
                 
+                var hourNumber = Number(hour);
+
+                date.innerHTML="<h1 style='margin-top: 30px; margin-bottom: 30px;'>Please select an available time slot for " + response.data[0].day + " - " + (hourNumber + 1) + ":00" + ": </h1>"
                 
+                scheduleField.innerHTML="<form id='subform'><select id='register' required><option " + sch1 + " value='1'>" + hourNumber + ":00" + " - " + hourNumber + ":15"+" </option><option " + sch2 + " value='2'>" + hourNumber + ":15" + " - " + hourNumber + ":30"+ "</option><option " + sch3 + " value='3'>" + hourNumber + ":30" + " - " + hourNumber + ":45"+ "</option><option " + sch4 +  " value='4'>" + hourNumber + ":45" + " - " + (hourNumber + 1) + ":00"+ "</option></select><textarea id='message' placeholder='Please include questions or topics you will discuss...' class='class-input form-control comp-input input-lg' style='resize:none; margin-top:15px; margin-bottom:15px;' required></textarea><input role='button' type='submit' value='Submit' id='submitBtn'/></form>"
+                
+                var list = document.getElementById('register');
+                list.options[value='default'].remove();
 
                 
                 // works with click but not submit
